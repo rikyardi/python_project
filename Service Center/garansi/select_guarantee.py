@@ -1,0 +1,192 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'select_guarantee.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+import pymysql
+
+class Ui_select_guarantee(object):
+    def select(self):
+        db = pymysql.connect("localhost", "root", "", "bingung")
+        cur = db.cursor()
+        a = self.lineEdit.text()
+        cur.execute("SELECT * FROM guarantee WHERE guarantee_id= '"+a+"' ")
+        result = cur.fetchall()
+        self.tableWidget.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.tableWidget.insertRow(row_number)
+            for colum_number, data in enumerate(row_data):
+                self.tableWidget.setItem(row_number, colum_number, QtWidgets.QTableWidgetItem(str(data)))
+    def setupUi(self, select_guarantee):
+        select_guarantee.setObjectName("select_guarantee")
+        select_guarantee.resize(800, 600)
+        select_guarantee.setStyleSheet("background-color: rgb(112, 112, 112);")
+        self.centralwidget = QtWidgets.QWidget(select_guarantee)
+        self.centralwidget.setObjectName("centralwidget")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(131, 150, 181, 20))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.label_5.setFont(font)
+        self.label_5.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_5.setObjectName("label_5")
+        self.line = QtWidgets.QFrame(self.centralwidget)
+        self.line.setGeometry(QtCore.QRect(1, 40, 801, 16))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.line.sizePolicy().hasHeightForWidth())
+        self.line.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        self.line.setFont(font)
+        self.line.setStyleSheet("  padding: 15px 25px;\n"
+"  font-size: 15px;\n"
+"  text-align: center;\n"
+"  cursor: pointer;\n"
+"  outline: none;\n"
+"color: rgb(60, 1, 255);\n"
+"  background-color: rgb(0, 255, 238);\n"
+"  border: none;\n"
+"  border-radius: 15px;\n"
+"  box-shadow: 0 9px #999;\n"
+"hover{color:red}")
+        self.line.setLineWidth(1)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(1, 0, 811, 42))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_3 = QtWidgets.QLabel(self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Lucida Calligraphy")
+        font.setPointSize(13)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout.addWidget(self.label_3)
+        spacerItem = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.label_2 = QtWidgets.QLabel(self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Imprint MT Shadow")
+        font.setPointSize(16)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout.addWidget(self.label_2)
+        spacerItem1 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
+        self.label = QtWidgets.QLabel(self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Lucida Calligraphy")
+        font.setPointSize(13)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.horizontalLayout.addWidget(self.label)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 60, 791, 41))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label_4 = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Kozuka Mincho Pro H")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout_2.addWidget(self.label_4)
+        self.btn_select = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_select.setGeometry(QtCore.QRect(471, 190, 75, 23))
+        self.btn_select.setStyleSheet("background-color: rgb(0, 0, 127);\n"
+"color: rgb(170, 255, 0);")
+        self.btn_select.setObjectName("btn_select")
+        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setGeometry(QtCore.QRect(311, 150, 231, 20))
+        self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.lineEdit.setObjectName("lineEdit")
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setGeometry(QtCore.QRect(80, 230, 631, 258))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
+        self.tableWidget.setSizePolicy(sizePolicy)
+        self.tableWidget.setMinimumSize(QtCore.QSize(0, 0))
+        self.tableWidget.setSizeIncrement(QtCore.QSize(0, 0))
+        self.tableWidget.setBaseSize(QtCore.QSize(0, 0))
+        self.tableWidget.setLineWidth(1)
+        self.tableWidget.setRowCount(0)
+        self.tableWidget.setColumnCount(5)
+        self.tableWidget.setObjectName("tableWidget")
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(4, item)
+        self.tableWidget.horizontalHeader().setDefaultSectionSize(125)
+        select_guarantee.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(select_guarantee)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        select_guarantee.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(select_guarantee)
+        self.statusbar.setObjectName("statusbar")
+        select_guarantee.setStatusBar(self.statusbar)
+
+        self.btn_select.clicked.connect(self.select)
+
+        self.retranslateUi(select_guarantee)
+        QtCore.QMetaObject.connectSlotsByName(select_guarantee)
+
+    def retranslateUi(self, select_guarantee):
+        _translate = QtCore.QCoreApplication.translate
+        select_guarantee.setWindowTitle(_translate("select_guarantee", "MainWindow"))
+        self.label_5.setText(_translate("select_guarantee", "Masukkan ID Guarantee"))
+        self.label_3.setText(_translate("select_guarantee", "SEARCHING"))
+        self.label_2.setText(_translate("select_guarantee", "Service Center"))
+        self.label.setText(_translate("select_guarantee", "Hai, Admin"))
+        self.label_4.setText(_translate("select_guarantee", "Searching For Guarantee"))
+        self.btn_select.setText(_translate("select_guarantee", "Cari"))
+        item = self.tableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("select_guarantee", "Guarantee ID"))
+        item = self.tableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("select_guarantee", "Guarantee Start Date"))
+        item = self.tableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("select_guarantee", "Guarantee End Date"))
+        item = self.tableWidget.horizontalHeaderItem(3)
+        item.setText(_translate("select_guarantee", "Guarantee Serial"))
+        item = self.tableWidget.horizontalHeaderItem(4)
+        item.setText(_translate("select_guarantee", "Guarantee Product ID"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    select_guarantee = QtWidgets.QMainWindow()
+    ui = Ui_select_guarantee()
+    ui.setupUi(select_guarantee)
+    select_guarantee.show()
+    sys.exit(app.exec_())

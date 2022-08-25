@@ -1,0 +1,186 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'select_user.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+import pymysql
+
+class Ui_select_user(object):
+    def select(self):
+        db = pymysql.connect("localhost","root","","bingung")
+        cur = db.cursor()
+        a =  self.lineEdit.text()
+        cur.execute("SELECT user_name, user_address, user_telp, user_email, user_gender, user_position FROM user WHERE user_id='"+a+"' ")
+        result = cur.fetchall()
+        self.tableWidget.setRowCount(0)
+        if (result):
+            for row_number, row_data in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for colum_number, data in enumerate(row_data):
+                    self.tableWidget.setItem(row_number, colum_number, QtWidgets.QTableWidgetItem(str(data)))
+        db.commit()
+    def setupUi(self, select_user):
+        select_user.setObjectName("select_user")
+        select_user.resize(800, 600)
+        select_user.setStyleSheet("background-color: rgb(127, 127, 127);")
+        self.centralwidget = QtWidgets.QWidget(select_user)
+        self.centralwidget.setObjectName("centralwidget")
+        self.line = QtWidgets.QFrame(self.centralwidget)
+        self.line.setGeometry(QtCore.QRect(0, 40, 801, 16))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.line.sizePolicy().hasHeightForWidth())
+        self.line.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        self.line.setFont(font)
+        self.line.setStyleSheet("padding: 15px 25px;\n"
+"  font-size: 24px;\n"
+"  text-align: center;\n"
+"  cursor: pointer;\n"
+"  outline: none;\n"
+"  color: #fff;\n"
+"  background-color: rgb(0, 255, 238);\n"
+"  border: none;\n"
+"  border-radius: 15px;\n"
+"  box-shadow: 0 9px #999;")
+        self.line.setLineWidth(1)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 801, 42))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_3 = QtWidgets.QLabel(self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Lucida Calligraphy")
+        font.setPointSize(13)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout.addWidget(self.label_3)
+        spacerItem = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.label_2 = QtWidgets.QLabel(self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Imprint MT Shadow")
+        font.setPointSize(16)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout.addWidget(self.label_2)
+        spacerItem1 = QtWidgets.QSpacerItem(100, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
+        self.label = QtWidgets.QLabel(self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Lucida Calligraphy")
+        font.setPointSize(13)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label.setObjectName("label")
+        self.horizontalLayout.addWidget(self.label)
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(0, 60, 801, 39))
+        font = QtGui.QFont()
+        font.setFamily("Imprint MT Shadow")
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_4.setObjectName("label_4")
+        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setGeometry(QtCore.QRect(320, 110, 231, 20))
+        self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.lineEdit.setObjectName("lineEdit")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(230, 180, 391, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.label_6.setFont(font)
+        self.label_6.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_6.setObjectName("label_6")
+        self.btn_select = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_select.setGeometry(QtCore.QRect(464, 150, 91, 23))
+        self.btn_select.setStyleSheet("background-color: rgb(0, 255, 255);")
+        self.btn_select.setObjectName("btn_select")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(170, 110, 151, 20))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.label_5.setFont(font)
+        self.label_5.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_5.setObjectName("label_5")
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setGeometry(QtCore.QRect(40, 210, 701, 261))
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(6)
+        self.tableWidget.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(5, item)
+        select_user.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(select_user)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        select_user.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(select_user)
+        self.statusbar.setObjectName("statusbar")
+        select_user.setStatusBar(self.statusbar)
+
+        self.btn_select.clicked.connect(self.select)
+
+        self.retranslateUi(select_user)
+        QtCore.QMetaObject.connectSlotsByName(select_user)
+
+    def retranslateUi(self, select_user):
+        _translate = QtCore.QCoreApplication.translate
+        select_user.setWindowTitle(_translate("select_user", "MainWindow"))
+        self.label_3.setText(_translate("select_user", "User"))
+        self.label_2.setText(_translate("select_user", "Service Center Ice Tech"))
+        self.label.setText(_translate("select_user", "Hai, Admin"))
+        self.label_4.setText(_translate("select_user", "Searching For User"))
+        self.label_6.setText(_translate("select_user", "Berikut ini adalah user yang anda cari "))
+        self.btn_select.setText(_translate("select_user", "Masukkan ID User"))
+        self.label_5.setText(_translate("select_user", "Masukkan ID user"))
+        item = self.tableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("select_user", "Nama User"))
+        item = self.tableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("select_user", "Alamat User"))
+        item = self.tableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("select_user", "No. Telp"))
+        item = self.tableWidget.horizontalHeaderItem(3)
+        item.setText(_translate("select_user", "Alamat Email"))
+        item = self.tableWidget.horizontalHeaderItem(4)
+        item.setText(_translate("select_user", "Kelamin"))
+        item = self.tableWidget.horizontalHeaderItem(5)
+        item.setText(_translate("select_user", "Jabatan"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    select_user = QtWidgets.QMainWindow()
+    ui = Ui_select_user()
+    ui.setupUi(select_user)
+    select_user.show()
+    sys.exit(app.exec_())
